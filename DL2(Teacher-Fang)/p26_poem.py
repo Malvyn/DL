@@ -19,7 +19,7 @@ class Config:
         self.epoches = 200
         self.save_path = 'models/p26_poem/poem'
         self.num_units = 200
-        self.sample_path = '/data/qts_7X4.txt'
+        self.sample_path = 'data/qts_7X4.txt'
         self.vacabulary_size = 256 * 256
         self.eps = 1e-8
         self.encoding = 'GB18030'
@@ -103,7 +103,7 @@ class Tensors:
 class Samples:
     def __init__(self, config:Config):
         self.config = config
-        file = open(config.sample_path, 'r')
+        file = open(config.sample_path, 'r', encoding='UTF-8')
         lines = file.readlines()
 
         self.num = len(lines)
@@ -120,7 +120,7 @@ class Samples:
         self.config = config
 
     def str2codes(self, line):
-        codes = line.question_net(self.config.encoding)
+        codes = line.encode(self.config.encoding)
         x = []
         for i in range(len(codes) // 2):
             code1, code2 = codes[2 * i], codes[2 * i + 1]
