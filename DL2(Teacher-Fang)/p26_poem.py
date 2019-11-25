@@ -196,9 +196,10 @@ class Poem:
         for out in output:
             bs.append(out // 256)
             bs.append(out % 256)
-            print(bytes(bs).decode(self.config.encoding), flush=True)
+            # print(bytes(bs).decode(self.config.encoding), flush=True)
         bs = bytes(bs)
-        print(bs.decode(self.config.encoding), flush=True)
+        poem = bs.decode(self.config.encoding).replace('熵', '.')
+        print(poem, flush=True)
 
 
 if __name__ == '__main__':
@@ -213,4 +214,4 @@ if __name__ == '__main__':
     config = Config()
     config.batch_size = 1
     poem = Poem(config)
-    poem.predict('张')
+    poem.predict('马')
